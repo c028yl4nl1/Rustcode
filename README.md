@@ -320,3 +320,151 @@ fn calcular_tamanho(s: &String) -> usize { // Recebemos uma referência
 
 * Esses são conceitos importantes para evitar vazamentos de memória e erros de acesso em Rust.
 ##
+
+### Tópico 8: Estruturas de Dados Personalizadas em Rust
+##
+##### Em Rust, você pode criar suas próprias estruturas de dados usando structs(estruturas) e enums(enumerações). Vamos explorar ambos com exemplos:
+###### Exemplo 1: Structs (Estruturas)
+~~~
+// Definindo uma struct chamada "Pessoa"
+struct Pessoa {
+    nome: String,
+    idade: u32,
+}
+
+fn main() {
+    // Criando uma instância da struct "Pessoa"
+    let alice = Pessoa {
+        nome: String::from("Alice"),
+        idade: 30,
+    };
+    
+    // Acessando os campos da struct
+    println!("Nome: {}", alice.nome);
+    println!("Idade: {}", alice.idade);
+}
+
+~~~
+* Neste exemplo, criamos uma struct chamada Pessoacom campos nomee idade, e depois criamos uma instância da struct.
+###### Exemplo 2: Enums (Enumerações)
+
+~~~
+// Definindo um enum chamado "DiaDaSemana"
+enum DiaDaSemana {
+    Segunda,
+    Terca,
+    Quarta,
+    Quinta,
+    Sexta,
+    Sabado,
+    Domingo,
+}
+
+fn main() {
+    // Usando um valor do enum
+    let dia = DiaDaSemana::Quarta;
+    
+    match dia {
+        DiaDaSemana::Sabado | DiaDaSemana::Domingo => {
+            println!("É fim de semana!");
+        }
+        _ => {
+            println!("É dia útil.");
+        }
+    }
+}
+
+~~~
+* Neste exemplo, criamos um enum chamado DiaDaSemana que representa os dias da semana e usamos um valor do enum em um match para determinar se é um dia útil ou de fim de semana.
+
+* Essas estruturas de dados personalizadas são úteis para organizar e representar dados em seu código.
+##
+### Tópico 9: Traits em Rust
+##
+##### As traits em Rust são semelhantes às interfaces em outras linguagens de programação e permitem definir comportamentos compartilhados entre diferentes tipos de dados. Vamos explorar como criar e usar traits em Rust com exemplos:
+
+##### Exemplo 1: Definindo uma Trait
+~~~
+ // Definindo uma trait chamada "Apresentavel"
+trait Apresentavel {
+    fn apresentar(&self);
+}
+
+// Implementando a trait para o tipo String
+impl Apresentavel for String {
+    fn apresentar(&self) {
+        println!("Olá, sou uma String: {}", self);
+    }
+}
+
+fn main() {
+    let texto = String::from("Rust é incrível!");
+    texto.apresentar();
+}
+
+~~~
+* Neste exemplo, definimos uma trait chamada Apresentavel e a implementamos para o tipo String, permitindo que objetos do tipo String usem a função apresentar.
+
+##### Exemplo 2: Uso Polimórfico de Traits
+~~~
+fn apresentar_coisa(apresentavel: &dyn Apresentavel) {
+    apresentavel.apresentar();
+}
+
+fn main() {
+    let texto = String::from("Rust é poderoso!");
+    let numero = 42;
+
+    apresentar_coisa(&texto);
+    apresentar_coisa(&numero.to_string());
+}
+
+~~~
+
+* Neste exemplo, usamos polimorfismo para chamar a função apresentar em diferentes tipos de dados que implementam a trait Apresentavel.
+##
+
+### Tópico 10: Macros em Rust
+##
+##### As macros em Rust são uma poderosa ferramenta para gerar código de forma programática. Vamos explorar como criar macros simples em Rust com exemplos:
+
+##### Exemplo 1: Criando uma Macro Básica
+~~~
+// Definindo uma macro chamada "saudacao"
+macro_rules! saudacao {
+    () => {
+        println!("Olá, mundo!");
+    };
+}
+
+fn main() {
+    saudacao!(); // Chamando a macro
+}
+
+~~~
+* Neste exemplo, definimos uma macro saudacao que gera código para imprimir "Olá, mundo!" quando chamada.
+
+##### Exemplo 2: Macros que Aceitam Parâmetros
+
+~~~
+// Definindo uma macro chamada "soma"
+macro_rules! soma {
+    ($a:expr, $b:expr) => {
+        $a + $b
+    };
+}
+
+fn main() {
+    let x = 5;
+    let y = 3;
+    let resultado = soma!(x, y); // Chamando a macro com parâmetros
+    println!("Resultado da soma: {}", resultado);
+}
+
+~~~
+
+* Neste exemplo, definimos uma macro soma que aceita dois valores como parâmetros e retorna a soma deles quando chamada.
+
+* As macros são uma ferramenta poderosa para gerar código repetitivo ou realizar tarefas complexas de metaprogramação.
+##
+
