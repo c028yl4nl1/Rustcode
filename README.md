@@ -123,3 +123,143 @@ fn main() {
 *  Neste código, a função calcular_fatorial recebe um número inteiro não negativo e calcula seu fatorial. No main(). 
 ##
 
+### Tópico 1: "Hello, World!"
+##
+*Aqui está um exemplo do programa "Hello, World!" em Ferrugem:*
+~~~
+fn main() {
+    println!("Hello, World!");
+}
+
+~~~
+* fn main() { ... }defina a função principal do programa.
+* println! é uma macro para imprimir texto no console.
+##### Compile e execute este programa usando o comando cargo runno terminal. Ele imprimirá "Olá, mundo!" sem console.
+##
+### Tópico 2: Variáveis ​​e tipos de dados em Rust
+##
+#### Em Rust, você precisa declarar o tipo de uma variável explicitamente ou deixar o Rust inferir o tipo automaticamente. Aqui estão alguns exemplos:
+~~~
+fn main() {
+    // Variáveis inteiras
+    let idade: i32 = 30; // Declara uma variável inteira de 32 bits
+    let numero = 42; // O Rust infere que é um i32
+    
+    // Variáveis de ponto flutuante
+    let salario: f64 = 1000.50; // Declara um ponto flutuante de 64 bits
+    let altura = 1.75; // O Rust infere que é um f64
+    
+    // Variáveis booleanas
+    let esta_chovendo = true;
+    
+    // Caracteres
+    let letra_a = 'a';
+    
+    // Texto (String)
+    let nome = "Alice"; // O Rust infere que é uma String
+    
+    println!("Idade: {}", idade);
+    println!("Salário: {:.2}", salario); // {:.2} formata para duas casas decimais
+    println!("Está chovendo? {}", esta_chovendo);
+    println!("Primeira letra do nome: {}", letra_a);
+    println!("Nome: {}", nome);
+}
+
+~~~
+* let é usado para declarar variáveis ​​em Rust.
+* i32 e f64são exemplos de tipos de dados.
+* {:.2}é usado para formatar números de ponto flutuante.
+##
+### Tópico 3: Mutabilidade em Ferrugem
+## 
+#### Em Rust, por padrão, as variáveis ​​são imutáveis, o que significa que você não pode alterar o valor delas após a atribuição. Para tornar uma variável mutável, você deve usar a palavra-chave mut. Aqui está um exemplo:
+~~~
+fn main() {
+    let x = 5; // Variável imutável
+    println!("x: {}", x);
+    
+    let mut y = 10; // Variável mutável
+    println!("y (antes): {}", y);
+    
+    y = 15; // Agora podemos alterar o valor de y
+    println!("y (depois): {}", y);
+}
+
+~~~
+* Neste exemplo, xé uma variável imutável e yé uma variável mutável. Você pode receber um novo valor a y, mas não a x.
+##
+
+### Tópico 4: Condicionais em Rust (if, else, match)
+##
+#### Rust oferece várias formas de declaração condicional. Vamos começar com if, else, e match.
+~~~
+fn main() {
+    let numero = 5;
+
+    if numero < 0 {
+        println!("Número é negativo.");
+    } else if numero == 0 {
+        println!("Número é igual a zero.");
+    } else {
+        println!("Número é positivo.");
+    }
+}
+
+~~~
+* Neste exemplo, o programa verifica se numeroé negativo, igual a zero ou positivo e imprime uma mensagem correspondente 
+##### Exemplo 2:match
+~~~
+fn main() {
+    let dia_da_semana = "quarta-feira";
+
+    match dia_da_semana {
+        "segunda-feira" | "terça-feira" | "quarta-feira" | "quinta-feira" | "sexta-feira" => {
+            println!("Dia de trabalho!");
+        }
+        "sábado" | "domingo" => {
+            println!("Fim de semana!");
+        }
+        _ => {
+            println!("Dia inválido.");
+        }
+    }
+}
+
+~~~
+* Neste exemplo, o matché usado para atribuir o valor de dia_da_semanavárias opções e imprimir uma mensagem correspondente.
+
+
+##
+### Tópico 5: Loops em Rust (for e while)
+##
+#### Rust oferece duas principais estruturas de repetição: for e while. Vamos explorar os exemplos:
+~~~
+fn main() {
+    // Loop de 1 a 5 (incluindo 5)
+    for numero in 1..=5 {
+        println!("Número: {}", numero);
+    }
+}
+
+~~~
+
+* Neste exemplo, o for é usado para criar um loop de 1 a 5 e imprimir cada número.
+
+### Exemplo 2: while Loop
+
+~~~
+
+fn main() {
+    let mut contador = 0;
+
+    while contador < 5 {
+        println!("Contador: {}", contador);
+        contador += 1;
+    }
+}
+
+~~~
+* Neste exemplo, usamos um while loop para imprimir o valor de contador enquanto ele for menor que 5.
+##
+
+
