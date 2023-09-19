@@ -262,4 +262,61 @@ fn main() {
 * Neste exemplo, usamos um while loop para imprimir o valor de contador enquanto ele for menor que 5.
 ##
 
+### Tópico 6: Funções em Rust
+##
+##### Funções são blocos de código reutilizáveis em Rust. Aqui está um exemplo de como criar e chamar funções:
+~~~
+// Definindo uma função chamada "soma"
+fn soma(a: i32, b: i32) -> i32 {
+    let resultado = a + b;
+    resultado // O último valor da função é retornado implicitamente
+}
 
+fn main() {
+    let numero1 = 5;
+    let numero2 = 3;
+    
+    // Chamando a função "soma"
+    let resultado = soma(numero1, numero2);
+    
+    println!("A soma de {} e {} é igual a {}.", numero1, numero2, resultado);
+}
+
+~~~
+* Neste exemplo, criamos uma função chamada soma que recebe dois números inteiros (a e b) como argumentos e retorna a soma deles. Na função main, chamamos a função soma e imprimimos o resultado.
+* 
+##
+
+### Tópico 7: Ownership e Borrowing em Rust
+##
+#### O sistema de propriedade (ownership) e referências (borrowing) é uma característica fundamental de Rust para garantir a segurança e prevenir problemas de gerenciamento de memória. Vamos explorar isso com exemplos:
+
+###### Exemplo 1: Ownership (Propriedade)
+~~~
+fn main() {
+    let s1 = String::from("Olá"); // s1 é a proprietária deste valor
+    let s2 = s1; // s1 "empresta" o valor para s2
+    // println!("s1: {}", s1); // Isso resultaria em um erro, s1 não é mais válido aqui
+    println!("s2: {}", s2);
+}
+
+~~~
+* Neste exemplo, s1 é a proprietária da String inicial. Quando atribuímos s1 a s2, s1 perde a propriedade e não pode mais ser usado.
+###### Exemplo 2: Borrowing (Empréstimo)
+~~~
+fn main() {
+    let s1 = String::from("Olá");
+    let tamanho = calcular_tamanho(&s1); // Passamos uma referência para a função
+    println!("Tamanho de s1: {}", tamanho);
+}
+
+fn calcular_tamanho(s: &String) -> usize { // Recebemos uma referência
+    s.len() // Podemos acessar o valor referenciado, mas não modificá-lo
+}
+
+~~~
+
+* Neste exemplo, passamos uma referência &s1 para a função calcular_tamanho. Isso permite que a função acesse o valor sem possuir a propriedade.
+
+* Esses são conceitos importantes para evitar vazamentos de memória e erros de acesso em Rust.
+##
