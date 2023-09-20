@@ -467,4 +467,105 @@ fn main() {
 
 * As macros são uma ferramenta poderosa para gerar código repetitivo ou realizar tarefas complexas de metaprogramação.
 ##
+### Tópico 11: Rust na Web - Desenvolvimento Web com Rust
+##
+##### Rust também pode ser usado para desenvolvimento web, com frameworks como Rocket, Actix, Warp e outros. Vamos explorar um exemplo simples com o framework Rocket:
 
+##### Exemplo com Rocket: Criando um Servidor Web Básico
+###### Para criar um servidor web simples com Rust e Rocket, primeiro, você precisa adicionar Rocket como dependência em seu arquivo Cargo.toml:
+~~~
+[dependencies]
+rocket = "0.5"
+
+~~~
+##### Aqui está um exemplo de servidor web Rocket básico:
+~~~
+use rocket::{Rocket, get, routes};
+
+#[get("/")]
+fn index() -> &'static str {
+    "Olá, mundo!"
+}
+
+fn main() {
+    let rocket = Rocket::ignite().mount("/", routes![index]);
+    rocket.launch();
+}
+
+~~~
+* Neste exemplo, definimos uma rota para a raiz ("/") que retorna a mensagem "Olá, mundo!" quando acessado.
+
+* -se de incluir as dependências corretas no seu Cargo.tomle, em seguida, você pode usar cargo runpara iniciar o servidor web.
+
+* Lembre-se de que isto é apenas um exemplo simples. Frameworks como Rocket oferecem recursos avançados para criar aplicativos web mais complexos em Rust.
+##
+### Tópico 12: Integração com Outras Linguagens
+##
+###### Rust é conhecido por sua capacidade de se integrar facilmente com outras linguagens, como C/C++ e Python. Vamos explorar como fazer essa integração com exemplos simples.
+
+##### Exemplo com C/C++: Chamando Funções C a partir de Rust
+
+###### Para chamar funções C a partir de Rust, você precisa criar uma interface usando o arquivo de cabeçalho C e vincular a biblioteca C correspondente. Vamos ver um exemplo de chamada de uma função C a partir de Rust:
+
+###### Suponha que temos um arquivo funcoes.c com a seguinte função:
+~~~
+#include <stdio.h>
+
+void funcao_c() {
+    printf("Função C foi chamada!\n");
+}
+
+~~~
+##### Agora, podemos criar um arquivo Rust que chama essa função:
+~~~
+extern "C" {
+    fn funcao_c();
+}
+
+fn main() {
+    unsafe {
+        funcao_c();
+    }
+}
+
+~~~
+* Este exemplo demonstra como usar extern "C" para declarar uma função C em Rust e, em seguida, chamar essa função de dentro de um programa Rust.
+
+#### Exemplo com Python: Chamando Rust a partir de Python
+
+##### Você pode criar uma biblioteca compartilhada em Rust e, em seguida, chamar essa biblioteca a partir de um programa Python usando a biblioteca ctypes. Aqui está um exemplo:
+
+###### Suponha que temos uma função simples em Rust que queremos chamar:
+~~~
+// lib.rs
+#[no_mangle]
+pub extern "C" fn somar(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+~~~
+##### Compilamos isso em uma biblioteca compartilhada:
+
+~~~
+$ rustc --crate-type cdylib lib.rs
+
+~~~
+##### Agora, podemos chamá-la a partir de Python:
+~~~
+# main.py
+from ctypes import CDLL
+
+# Carregando a biblioteca compartilhada Rust
+rust_lib = CDLL("./lib.so")
+
+# Chamando a função somar
+resultado = rust_lib.somar(5, 3)
+print("Resultado da soma:", resultado)
+
+~~~
+* Executando main.py, você verá que a função Rust é chamada a partir do Python.
+
+* Esses são exemplos simples de integração, e a extensibilidade de Rust é uma de suas características poderosas.
+##
+
+Fim da jornada Rust intermediário
